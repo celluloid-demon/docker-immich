@@ -1,0 +1,5 @@
+services:
+  database:
+    environment:
+      # Uncomment the DB_STORAGE_TYPE: 'HDD' var if your database isn't stored on SSDs
+      DB_STORAGE_TYPE: 'HDD'

@@ -1,0 +1,25 @@
+services:
+  immich-server:
+    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-v2}
+    volumes:
+      - ${VOLUMES}/data:/data
+    ports:
+      - ${PORT}:2283
+    restart: unless-stopped
+
+  immich-machine-learning:
+    # For hardware acceleration, add one of -[armnn, cuda, rocm, openvino, rknn] to the image tag.
+    # Example tag: ${IMMICH_VERSION:-release}-cuda
+    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-v2}
+    volumes:
+      - ${VOLUMES}/model-cache:/cache
+    restart: unless-stopped
+
+  redis:
+    restart: unless-stopped
+
+  database:
+    volumes:
+      # Do not edit the next line. If you want to change the database storage location on your system, edit the value of DB_DATA_LOCATION in the .env file
+      - ${VOLUMES}/db:/var/lib/postgresql/data
+    restart: unless-stopped
