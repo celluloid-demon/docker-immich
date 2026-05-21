@@ -18,7 +18,7 @@ services:
     #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
     volumes:
       # Do not edit the next line. If you want to change the media storage location on your system, edit the value of UPLOAD_LOCATION in the .env file
-      - ${UPLOAD_LOCATION}:/data
+      # - ${UPLOAD_LOCATION}:/data  # [REMOVED]
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
@@ -64,9 +64,13 @@ services:
       POSTGRES_INITDB_ARGS: '--data-checksums'
       # Uncomment the DB_STORAGE_TYPE: 'HDD' var if your database isn't stored on SSDs
       # DB_STORAGE_TYPE: 'HDD'
-    volumes:
-      # Do not edit the next line. If you want to change the database storage location on your system, edit the value of DB_DATA_LOCATION in the .env file
-      - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
+
+    # <--- REMOVED --->
+    # volumes:
+    #   # Do not edit the next line. If you want to change the database storage location on your system, edit the value of DB_DATA_LOCATION in the .env file
+    #   - ${DB_DATA_LOCATION}:/var/lib/postgresql/data 
+    # <--- /REMOVED --->
+
     shm_size: 128mb
     restart: always
     healthcheck:
