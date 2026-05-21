@@ -1,0 +1,3 @@
+services:
+  database:
+    image: ghcr.io/immich-app/postgres:15-vectorchord0.4.3-pgvectors0.2.0
